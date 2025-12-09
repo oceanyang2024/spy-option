@@ -11,9 +11,11 @@ if __name__ == "__main__":
 
     date=et_day.strftime("%Y/%m/%d")
     path=f'data/{date}'
-    cmd=f'rm -rf data/{path}; mkdir -p {path}'
+    cmd=f'rm -rf {path}; mkdir -p {path}'
     os.system(cmd)
     
     cmd=f'python3 src/yahoo-option.py SPY {path}'
     os.system(cmd)
 
+    cmd=f'git add {path}/*.csv; git commit -m "{path}"; git push'
+    os.system(cmd)

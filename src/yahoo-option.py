@@ -26,7 +26,7 @@ def download_options(ticker: str, outdir: str):
         df = pd.concat([calls, puts], ignore_index=True)
         options_data[expiry] = df
 
-        filename = f"{outdir}/{ticker}_options_{expiry}.csv"
+        filename = f"{outdir}/{expiry}.csv"
         df.to_csv(filename, index=False)
         
     return options_data
