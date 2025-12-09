@@ -5,6 +5,9 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
 
@@ -12,6 +15,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}   # default GitHub token
 
     - name: init
       run: python -m venv venv
@@ -33,7 +38,4 @@ jobs:
     - name: push
       run: |
         git commit -m "Automated update from workflow [skip ci]"
-        git push origin main
-        env:
-          # Use default GITHUB_TOKEN for same repo, or a PAT for other repos
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        git push
