@@ -22,5 +22,18 @@ jobs:
     - name: activate
       run: . venv/bin/activate
 
+    - name: config
+      run: |
+         git config user.name "GitHub Actions"
+         git config user.email "actions@github.com"
+
     - name: run
       run: make
+
+    - name: push
+      run: |
+        git commit -m "Automated update from workflow [skip ci]"
+        git push origin main
+        env:
+          # Use default GITHUB_TOKEN for same repo, or a PAT for other repos
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

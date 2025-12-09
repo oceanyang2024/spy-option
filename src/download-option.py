@@ -17,5 +17,5 @@ if __name__ == "__main__":
     cmd=f'python3 src/yahoo-option.py SPY {path}'
     os.system(cmd)
 
-    cmd=f'git add {path}/*.csv; git commit -m "{path}"; git push'
+    cmd=f'git add {path}/*.csv'
     os.system(cmd)
